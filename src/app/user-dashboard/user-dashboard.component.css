@@ -1,0 +1,13 @@
+.user-dashboard-container {
+  text-align: center;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+.addUser {
+  margin-left: 70%;
+  margin-top: 1.5px;
+}
+
+.highlighted-row {
+  background-color: lightskyblue !important; /* Use any color you prefer for highlighting */
+}

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">User Management</a>
+    <button
+      class="addUser"
+      mat-raised-button
+      color="accent"
+      *ngIf="isSuperAdmin() || isAdmin()"
+      (click)="openAddUserDialog()"
+    >
+      Add User
+    </button>
+    <a class="navbar-brand" color="accent" href="#">Logout</a>
+  </div>
+</nav>
+
+<section class="user-dashboard-container">
+  <table class="table table-bordered table-striped table-hover mt-4">
+    <thead class="thead-dark">
+      <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let user of users"
+        [ngClass]="{ 'highlighted-row': user._id === currentUserId }"
+      >
+        <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>
+          <button
+            mat-raised-button
+            class="btn btn-sm btn-primary"
+            [disabled]="!canEdit(user)"
+            (click)="openEditUserDialog(user)"
+          >
+            Edit
+          </button>
+          <button
+            mat-raised-button
+            class="btn btn-sm btn-danger ml-2"
+            [disabled]="!canDelete()"
+            (click)="deleteUser(user)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

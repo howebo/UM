@@ -1,0 +1,59 @@
+<!-- add-user-dialog.component.html -->
+
+<div class="container mt-2">
+  <h2>{{ data.editMode ? "Edit User" : "Add User" }}</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select id="role" class="form-control" formControlName="role">
+        <option value="superadmin">Superadmin</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input id="username" class="form-control" formControlName="username" />
+    </div>
+
+    <div>
+      <label>Password:</label>
+      <input
+        formControlName="password"
+        [type]="hidePassword ? 'password' : 'text'"
+      />
+      <button mat-icon-button (click)="togglePasswordVisibility($event)">
+        <mat-icon>{{
+          hidePassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select id="gender" class="form-control" formControlName="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" class="form-control" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input id="phone" class="form-control" formControlName="phone" />
+    </div>
+
+    <button type="button" class="btn btn-secondary mr-5" (click)="onCancel()">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary upt">
+      {{ data.editMode ? "Update" : "Submit" }}
+    </button>
+  </form>
+</div>
